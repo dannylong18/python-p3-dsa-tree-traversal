@@ -3,4 +3,19 @@ class Tree:
     self.root = root
 
   def get_element_by_id(self, id):
-    pass
+    
+    def depth_search(node):
+      if node['id'] == id:
+        return node
+      
+      for child in node.get('children', []):
+        result = depth_search(child)
+        if result:
+            return result 
+    
+      return None
+    
+    if self.root:
+      return depth_search(self.root)
+    else: 
+      return None
